@@ -39,9 +39,6 @@ class FormSignin extends Component {
                 <header className="header">
                     <h1>
                         Welcome back
-            <span role="img" aria-label="hand">
-                            :wave:
-            </span>
                     </h1>
                 </header>
                 <form autoComplete="off" className="form" onSubmit={this.handleSubmit}>
@@ -75,7 +72,7 @@ class FormSignin extends Component {
                     <button className="btn-submit">Let's go!</button>
                 </form>
                 <div className="form-section link">
-                    <p>Already have an account? </p>
+                    <p>Don't yet have an account? </p>
                     <Link to="/signup">Register</Link>
                 </div>
             </section>
