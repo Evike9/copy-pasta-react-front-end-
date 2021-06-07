@@ -19,7 +19,9 @@ const NavMain = (props) => {
         {context.isLoggedIn && (
           <React.Fragment>
             <li>
-              <p onClick={toggleFormDisplay}>Add snippet</p>
+              <NavLink to="/add-snippet">
+                Add Snippet
+              </NavLink>
             </li>
             <li>
               <NavLink to="/profile">

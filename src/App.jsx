@@ -1,19 +1,19 @@
 import './App.css';
 import React from 'react';
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import NavMain from "./components/NavMain";
-import FormSignup from './components/Forms/FormSignup';
-import FormSignin from './components/Forms/FormSignin';
+import { FormSignup, FormSignin } from './components/Forms';
 import Profile from './pages/Profile';
-
+import ProtectedRoute from './utils/ProtectedRoute';
+import AddSnippet from './pages/AddSnippet'
 class App extends React.Component {
   state = {
     displayForm: false,
   };
 
   toggleFormDisplay = () => {
-    this.setState({ displayForm: !this.state.displayForm });
+    //  this.setState({ displayForm: !this.state.displayForm });
   };
 
   handleClose = () => {
@@ -49,20 +49,31 @@ class App extends React.Component {
               />
             )}
           />
-
           <ProtectedRoute
+            exact
+            path="/add-snippet"
+            render={(historyProps) => (
+              <AddSnippet
+                {...historyProps}
+                displayForm={this.state.displayForm}
+                handleFormClose={this.handleClose}
+              />
+            )}
+          />
+
+          {/*       <ProtectedRoute
             exact
             path="/profile/settings"
             component={FormProfile}
-          />
+          /> */}
 
-        <Route exact path="/" component={Home} />
-        <Route exact path="/signup" component={FormSignup} />
-        <Route exact path="/signin" component={FormSignin} />
-      </Switch>
-    </div>
-  );
-};
+          <Route exact path="/" component={Home} />
+          <Route exact path="/signup" component={FormSignup} />
+          <Route exact path="/signin" component={FormSignin} />
+        </Switch>
+      </div>
+    );
+  };
 }
 
 export default App;

@@ -6,13 +6,13 @@ import apiHandler from "../api/apiHandler";
 //import FeedBack from "../components/FeedBack";
 import SnippetCard from "../snippets/SnippetCard";
 import UpdateSnippet from "../snippets/UpdateSnippet";
-import AddSnippet from "../snippets/AddSnippet";
+import AddSnippet from "./AddSnippet";
 //import "../styles/Profile.css";
 //import "../styles/form.css";
 
 class Profile extends Component {
     state = {
-        httpResponse: null,
+        //httpResponse: null,
         selectedSnippet: null,
         userSnippets: [],
     };
@@ -24,6 +24,7 @@ class Profile extends Component {
         promises.then((allPromises) => {
             const userInfos = allPromises[0];
             const userSnippets = allPromises[1];
+            console.log(allPromises);
             this.setState({
                 user: userInfos,
                 userSnippets: userSnippets,
@@ -49,7 +50,7 @@ class Profile extends Component {
     };
     handleSnippetUpdate = (updatedSnippet) => {
         const userSnippets = [...this.state.userSnippets].map((snippet) =>
-            item._id === updatedSnippet._id ? updatedSnippet : snippet
+            snippet._id === updatedSnippet._id ? updatedSnippet : snippet
         );
         this.setState({ userSnippets });
     };
@@ -60,7 +61,7 @@ class Profile extends Component {
         this.timeoutId && clearTimeout(this.timeoutId);
     }
     render() {
-        const { httpResponse, userSnippets, selectedSnippet, user } = this.state;
+        const { userSnippets, selectedSnippet, user } = this.state;
         if (!user) return null;
         return (
             <section className="Profile">
@@ -99,7 +100,7 @@ class Profile extends Component {
                 {!!userSnippets.length && (
                     <div className="SnippetCard">
                         <h3>Your snippets</h3>
-                        {userSnippets.map((item, index) => (
+                        {userSnippets.map((snippet, index) => (
                             <SnippetCard
                                 key={index}
                                 {...snippet}
