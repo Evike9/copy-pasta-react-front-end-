@@ -13,6 +13,7 @@ import AddSnippet from "./AddSnippet";
 class Profile extends Component {
     state = {
         //httpResponse: null,
+        user: null,
         selectedSnippet: null,
         userSnippets: [],
     };
@@ -31,6 +32,8 @@ class Profile extends Component {
             });
         });
     }
+
+
     deleteSnippet = (snippetId) => {
         apiHandler.removeSnippet(snippetId).then(() => {
             const userSnippets = [...this.state.userSnippets].filter(
@@ -39,6 +42,8 @@ class Profile extends Component {
             this.setState({ userSnippets });
         });
     };
+
+
     onSnippetSelect = (snippetId) => {
         const selectedSnippet = this.state.userSnippets.find(
             (snippet) => snippet._id === snippetId
@@ -54,12 +59,12 @@ class Profile extends Component {
         );
         this.setState({ userSnippets });
     };
+
     addSnippet = (snippet) => {
         this.setState({ userSnippets: [...this.state.userSnippets, snippet] });
     };
-    componentWillUnmount() {
-        this.timeoutId && clearTimeout(this.timeoutId);
-    }
+
+
     render() {
         const { userSnippets, selectedSnippet, user } = this.state;
         if (!user) return null;
@@ -85,6 +90,12 @@ class Profile extends Component {
                     <h2 className="title">
                         {user.userName}
                     </h2>
+                    <div>
+                        Linkedin: <a href={user.LinkedIn}>{user.LinkedIn} </a>
+                    </div>
+                    <div>
+                        GitHub: <a href={user.GitHub}> {user.GitHub} </a>
+                    </div>
                     <Link className="link" to="/profile/settings">
                         Edit profile
             </Link>
