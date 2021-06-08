@@ -50,7 +50,7 @@ class SnippetForm extends Component {
         const { httpResponse, ...data } = this.state;
         buildFormData(fd, data);
 
-        fd.append("picture", this.pictureRef.current.files[0]); // ???
+        fd.append("picture", this.pictureRef.current.files[0]); 
 
 
 

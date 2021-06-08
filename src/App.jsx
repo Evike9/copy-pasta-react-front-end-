@@ -1,12 +1,14 @@
 import './App.css';
 import React from 'react';
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import NavMain from "./components/NavMain";
 import { FormSignup, FormSignin } from './components/Forms';
 import Profile from './pages/Profile';
 import ProtectedRoute from './utils/ProtectedRoute';
 import AddSnippet from './pages/AddSnippet'
+import UpdateSnippet from './snippets/UpdateSnippet';
+
 class App extends React.Component {
   state = {
     displayForm: false,
@@ -68,6 +70,7 @@ class App extends React.Component {
           /> */}
 
           <Route exact path="/" component={Home} />
+          <Route exact path="/update-snippet" component={UpdateSnippet} />
           <Route exact path="/signup" component={FormSignup} />
           <Route exact path="/signin" component={FormSignin} />
         </Switch>
