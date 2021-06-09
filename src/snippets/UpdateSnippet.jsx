@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import withUser from "../auth/withUser";
 import apiHandler from "../api/apiHandler";
 import { Redirect } from "react-router-dom";
-import { buildFormData } from "../utils/buildFormData";
-import { useParams } from "react-router-dom";
 // import "../../styles/ItemForm.css";
 
 const state = {

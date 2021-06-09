@@ -10,7 +10,6 @@ import AddSnippet from "./AddSnippet";
 
 class Profile extends Component {
     state = {
-        //httpResponse: null,
         user: null,
         selectedSnippet: null,
         userSnippets: [],
@@ -34,10 +33,10 @@ class Profile extends Component {
 
     deleteSnippet = (snippetId) => {
         apiHandler.removeSnippet(snippetId).then(() => {
-           const userSnippets = [...this.state.userSnippets].filter(
+            const userSnippets = [...this.state.userSnippets].filter(
                 (snippet) => snippet._id !== snippetId
             );
-            this.setState({ userSnippets }); 
+            this.setState({ userSnippets });
         });
     };
 
@@ -47,9 +46,7 @@ class Profile extends Component {
         );
         this.setState({ selectedSnippet: selectedSnippet });
     };
-    onEditFormClose = () => {
-        this.setState({ selectedSnippet: null });
-    };
+
     handleSnippetUpdate = (updateSnippet) => {
         const userSnippets = [...this.state.userSnippets].map((snippet) =>
             snippet._id === updateSnippet._id ? updateSnippet : snippet
@@ -97,7 +94,7 @@ class Profile extends Component {
                     </div>
                     <Link className="link" to="/profile/settings">
                         Edit profile
-            </Link>
+                    </Link>
                 </div>
                 {!userSnippets.length && (
                     <React.Fragment>
