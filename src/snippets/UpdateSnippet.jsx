@@ -1,26 +1,25 @@
 import React, { Component } from "react";
-// import AutoComplete from "../AutoComplete";
-// import Button from "../Button";
-// import Message from "../Message";
 import withUser from "../auth/withUser";
 import apiHandler from "../api/apiHandler";
+import { Redirect } from "react-router-dom";
 import { buildFormData } from "../utils/buildFormData";
-// import FeedBack from "../FeedBack";
+import { useParams } from "react-router-dom";
 // import "../../styles/ItemForm.css";
 
-class UpdateSnippet extends Component {
-
-
-    state = {
+const state = {
     title: "",
     userName: "",
     description: "",
     category: "",
     snippet: "",
-    httpResponse: null,
+    tempPictureUrl: null,
+    credits: "",
+    snippetUpdated: false,
     error: null,
-    }  // initial state 
+}  // initial state 
+class UpdateSnippet extends Component {
 
+    state = state;
     updateRef = React.createRef();
 
     handleChange = (event) => {
@@ -33,7 +32,24 @@ class UpdateSnippet extends Component {
 
     componentDidMount() {
 
+        console.log("here")
+        // console.log("componentDidMount was called");
+        // console.log("this.props", this.props);
         // make api call to get one snippet
+        const id = this.props.match.params.id;
+        apiHandler.getSnippet(id).then(data => {
+            console.log(data)
+            this.setState({
+                title: data.title,
+                userName: data.userName,
+                description: data.description,
+                category: data.category, 
+                snippet: data.snippet,
+                creator: data.creator,
+                picture: data.picture,
+                credits: data.credits,
+            })
+        })
 
 
 
@@ -46,58 +62,62 @@ class UpdateSnippet extends Component {
 
 
     }
+//we create a temporary URL to view out file before updating it
+    handlePreview = event => {
+
+        const file = event.target.files[0];
+        const fakeUrl = URL.createObjectURL(file);
+        this.setState({
+            tempPictureUrl: fakeUrl
+        })
+
+    }
 
     handleSubmit = (event) => {
         event.preventDefault();
 
-        const fd = new FormData();
-        const { httpResponse, ...data } = this.state;
-        buildFormData(fd, data);
+        const formData = new FormData();
+        formData.append("credits", this.state.credits)
+        formData.append("title", this.state.title);
+        formData.append("description", this.state.description);
+        formData.append("userName", this.state.userName);
+        formData.append("category", this.state.category);
+        formData.append("snippet", this.state.snippet);
 
-        fd.append("picture", this.updateRef.current.files[0]); // ???
+        const files = this.updateRef.current.files;
 
+        if (files) {
+            formData.append("picture", files[0])
+        }
 
+        const id = this.props.match.params.id;
 
-        // get the id of the snippet you're editing either from the state
-
-        // or the id contained in the url (something something math.params)
-        // normally this should update the correct snippet
-        apiHandler
-            .updateSnippet(this.props.snippet._id, fd)
-            .then((data) => {
-                this.props.onSnippetUpdate(data);
-
-                this.setState({
-                    httpResponse: {
-                        status: "success",
-                        message: "Snippet successfully added.",
-                    },
-                });
-
-            })
-            .catch((error) => {
-                this.setState({
-                    httpResponse: {
-                        status: "failure",
-                        message: "An error occured, try again later.",
-                    },
-                });
+        apiHandler.updateSnippet(id, formData).then(data => {
+            this.setState({
+                ...state,
+                snippetUpdated: true,
             });
-    };
+
+        })
+};
+
 
     render() {
-
+        if (this.state.snippetUpdated) {
+            return <Redirect to="/profile" />;
+        }
 
         return (
             <div className="SnippetForm-container">
                 <form
-                    ref={this.updateRef}
+
                     className="SnippetForm"
                     onSubmit={this.handleSubmit}>
-                    <p onClick={this.props.handleClose} className="close-link">
-                        X
-          </p>
                     <h2>Edit snippet</h2>
+                    <img style={{
+                        width: 64,
+                        height: 64
+                    }} src={this.state.tempPictureUrl || this.state.picture} />
                     <div className="form-group">
                         <label className="label" htmlFor="title">
                             Title
@@ -106,8 +126,7 @@ class UpdateSnippet extends Component {
                             className="input"
                             type="text"
                             onChange={this.handleChange}
-                            value={this.state.title || ""}
-                            placeholder="Title"
+                            value={this.state.title}
                             name="title"
                         />
                     </div>
@@ -147,11 +166,8 @@ class UpdateSnippet extends Component {
                             name="category"
                             id="category"
                             onChange={this.handleChange}
-                            value={this.state.category[0] || ""}
+                            value={this.state.category}
                         >
-                            <option value="" disabled>
-                                Select a category
-              </option>
                             <option value="HTML">HTML</option>
                             <option value="CSS">CSS</option>
                             <option value="JS">JS</option>
@@ -167,6 +183,7 @@ class UpdateSnippet extends Component {
                             className="input"
                             type="text"
                             name="snippet"
+                            onChange={this.handleChange}
                             value={this.state.snippet || ""}
                         />
                     </div>
@@ -177,9 +194,8 @@ class UpdateSnippet extends Component {
                         <input
                             className="input"
                             type="file"
-                            value={this.state.picture || ""}
-                            ref={this.picture}
-
+                            onChange={this.handlePreview}
+                            ref={this.updateRef}
                             name="picture"
                         />
                     </div>

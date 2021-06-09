@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-//import Button from "../components/Button";
 import withUser from "../auth/withUser";
 import apiHandler from "../api/apiHandler";
-//import FeedBack from "../components/FeedBack";
 import SnippetCard from "../snippets/SnippetCard";
 import UpdateSnippet from "../snippets/UpdateSnippet";
 import AddSnippet from "./AddSnippet";
@@ -36,13 +34,12 @@ class Profile extends Component {
 
     deleteSnippet = (snippetId) => {
         apiHandler.removeSnippet(snippetId).then(() => {
-            const userSnippets = [...this.state.userSnippets].filter(
+           const userSnippets = [...this.state.userSnippets].filter(
                 (snippet) => snippet._id !== snippetId
             );
-            this.setState({ userSnippets });
+            this.setState({ userSnippets }); 
         });
     };
-
 
     onSnippetSelect = (snippetId) => {
         const selectedSnippet = this.state.userSnippets.find(
@@ -53,9 +50,9 @@ class Profile extends Component {
     onEditFormClose = () => {
         this.setState({ selectedSnippet: null });
     };
-    handleSnippetUpdate = (updatedSnippet) => {
+    handleSnippetUpdate = (updateSnippet) => {
         const userSnippets = [...this.state.userSnippets].map((snippet) =>
-            snippet._id === updatedSnippet._id ? updatedSnippet : snippet
+            snippet._id === updateSnippet._id ? updateSnippet : snippet
         );
         this.setState({ userSnippets });
     };
@@ -67,6 +64,8 @@ class Profile extends Component {
 
     render() {
         const { userSnippets, selectedSnippet, user } = this.state;
+        console.log("selectedSnippet", selectedSnippet);
+        console.log("this.state", this.state);
         if (!user) return null;
         return (
             <section className="Profile">
@@ -116,7 +115,6 @@ class Profile extends Component {
                                 key={index}
                                 {...snippet}
                                 handleDelete={this.deleteSnippet}
-                                handleEdit={this.onSnippetSelect}
                             />
                         ))}
                     </div>

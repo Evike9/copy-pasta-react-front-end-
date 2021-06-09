@@ -70,7 +70,7 @@ class App extends React.Component {
           /> */}
 
           <Route exact path="/" component={Home} />
-          <Route exact path="/update-snippet" component={UpdateSnippet} />
+          <Route exact path="/update-snippet/:id" component={UpdateSnippet}/>
           <Route exact path="/signup" component={FormSignup} />
           <Route exact path="/signin" component={FormSignin} />
         </Switch>

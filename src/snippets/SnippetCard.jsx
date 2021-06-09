@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom";
 
 const SnippetCard = (props) => {
-    const { picture, title, _id, userName, category, credits, description, handleEdit, handleDelete } =
+    const { picture, title, _id, userName, category, description, snippet, credits, handleDelete } =
         props;
 
     return (
@@ -15,16 +15,17 @@ const SnippetCard = (props) => {
                 <h4>User: {userName}</h4>
                 <h5>Category: {category}</h5>
                 <p>Description: {description}</p>
+                <p>Snippet: {snippet}</p>
                 <p>Credits: {credits}</p>
                 <div className="buttons">
-                    <button handleClick={(event) => handleDelete(_id)} secondary>
-                        Delete
+                    <button onClick={(event) => handleDelete(_id)} secondary>
+                            Delete snippet
             </button>
-                    <button handleClick={(event) => handleEdit(_id)}>
+                    <button>
                         <Link to={"/update-snippet/" + _id}>
                             Edit Snippet
                         </Link>
-                    </button>
+            </button>
 
                 </div>
             </div>

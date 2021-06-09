@@ -46,7 +46,6 @@ const apiHandler = {
       .catch(errorHandler);
   },
 
-
   getSnippets() {
     return service
       .get("/api/snippet")
@@ -54,37 +53,44 @@ const apiHandler = {
       .catch(errorHandler);
   },
 
-  updateUser(data) {
+  getSnippet(id) {
     return service
-      .patch("/api/user/:id", data)
+      .get(`/api/snippet/${id}`)
       .then((res) => res.data)
       .catch(errorHandler);
   },
 
-  getUserInfos() {
+  updateUser(id, data) {
     return service
-      .get("/api/user/:id")
+      .patch(`/api/user/${id}`, data)
+      .then((res) => res.data)
+      .catch(errorHandler);
+  },
+
+  getUserInfos(id) {
+    return service
+      .get(`/api/user/${id}`)
       .then((res) => res.data)
       .catch(errorHandler);
   },
 
   removeSnippet(snippetId) {
     return service
-      .delete(`/api/snippet${snippetId}`)
+      .delete(`/api/snippet/${snippetId}`)
       .then((res) => res.data)
       .catch(errorHandler);
   },
 
   updateSnippet(snippetId, data) {
     return service
-      .patch(`/api/snippet${snippetId}`, data)
+      .patch(`/api/snippet/${snippetId}`, data)
       .then((res) => res.data)
       .catch(errorHandler);
   },
 
-  getUserSnippets() {
+  getUserSnippets(id) {
     return service
-      .get("/api/user/:id/snippet")
+      .get(`/api/user/${id}/snippet/`)
       .then((res) => res.data)
       .catch(errorHandler);
   },

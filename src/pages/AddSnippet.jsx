@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 // import AutoComplete from "../AutoComplete";
 // import Button from "../Button";
 // import Message from "../Message";
@@ -14,6 +15,8 @@ const initialState = {
     description: "",
     category: "",
     snippet: "",
+    credits: "",
+    snippetAdded: false,
     httpResponse: null,
     error: null,
 };
@@ -33,19 +36,6 @@ class SnippetForm extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
 
-        // Handle some validation here.
-
-
-
-        if (!this.state.category) {
-            this.setState({ error: "No category selected !" }, () => {
-                this.timeoutId = setTimeout(() => {
-                    this.setState({ error: null });
-                }, 1000);
-            });
-            return;
-        }
-
         const fd = new FormData();
         const { httpResponse, ...data } = this.state;
         buildFormData(fd, data);
@@ -53,43 +43,21 @@ class SnippetForm extends Component {
         fd.append("picture", this.pictureRef.current.files[0]); 
 
 
-
-
-
-
         apiHandler
             .addSnippet(fd)
             .then((data) => {
-                this.props.addSnippet(data);
-
                 this.setState({
                     ...initialState,
-                    httpResponse: {
-                        status: "success",
-                        message: "Item successfully added.",
-                    },
+                    snippetAdded: true,
                 });
 
-                this.timeoutId = setTimeout(() => {
-                    this.setState({ httpResponse: null });
-                }, 1000);
             })
-            .catch((error) => {
-                this.setState({
-                    httpResponse: {
-                        status: "failure",
-                        message: "An error occured, try again later.",
-                    },
-                });
-
-                this.timeoutId = setTimeout(() => {
-                    this.setState({ httpResponse: null });
-                }, 1000);
-            });
     };
 
     render() {
-
+if (this.state.snippetAdded) {
+    return <Redirect to="/profile" />;
+}
         return (
             <div className="SnippetForm-container">
                 <form className="SnippetForm" onSubmit={this.handleSubmit}>
@@ -163,6 +131,9 @@ class SnippetForm extends Component {
                         <input
                             className="input"
                             type="text"
+                            onChange={this.handleChange}
+                            value={this.state.snippet}
+                            placeholder="Snippet"
                             name="snippet"
                         />
                     </div>
@@ -180,16 +151,16 @@ class SnippetForm extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label className="label" htmlFor="creator">
-                            Creator
+                        <label className="label" htmlFor="credits">
+                            Credits
             </label>
                         <input
                             className="input"
                             type="text"
                             onChange={this.handleChange}
-                            value={this.state.creator}
-                            placeholder="Creator"
-                            name="creator"
+                            value={this.state.credits}
+                            placeholder="Give some credits"
+                            name="credits"
                         />
                     </div>
 
