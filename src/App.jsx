@@ -9,7 +9,7 @@ import ProtectedRoute from './utils/ProtectedRoute';
 import AddSnippet from './pages/AddSnippet'
 import UpdateSnippet from './snippets/UpdateSnippet';
 import SnippetDetail from './snippets/SnippetDetail';
-import DisplayCard from './pages/DisplayCard';
+
 
 class App extends React.Component {
   state = {
@@ -58,7 +58,7 @@ class App extends React.Component {
           <ProtectedRoute exact path="/update-snippet/:id" component={UpdateSnippet} />
 
           <Route exact path="/" component={Home} />
-          <Route exact path="/snippet/:id" component={DisplayCard} />
+          <Route exact path="/snippet/:id" component={SnippetDetail} />
           <Route exact path="/signup" component={FormSignup} />
           <Route exact path="/signin" component={FormSignin} />
         </Switch>

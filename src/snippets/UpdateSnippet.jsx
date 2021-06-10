@@ -112,10 +112,9 @@ class UpdateSnippet extends Component {
                     className="SnippetForm"
                     onSubmit={this.handleSubmit}>
                     <h2>Edit snippet</h2>
-                    <img style={{
-                        width: 64,
-                        height: 64
-                    }} src={this.state.tempPictureUrl || this.state.picture} />
+                    <img 
+                    alt={this.state.title}
+                    src={this.state.tempPictureUrl || this.state.picture} />
                     <div className="form-group">
                         <label className="label" htmlFor="title">
                             Title
