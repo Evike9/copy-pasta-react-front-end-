@@ -13,7 +13,8 @@ const NavMain = (props) => {
   return (
     <nav className="NavMain">
       <NavLink exact to="/">
-        <h3 className="logo">CopyPasta</h3>
+      <img src="./logo.png" className="logo" alt="logo"/>
+
       </NavLink>
       <ul>
         {context.isLoggedIn && (
@@ -37,10 +38,10 @@ const NavMain = (props) => {
         {!context.isLoggedIn && (
           <React.Fragment>
             <li>
-              <NavLink to="/signin">Log in</NavLink>
+              <NavLink to="/signin"class="nav-log">Log in</NavLink>
             </li>
             <li>
-              <NavLink to="/signup">Create account</NavLink>
+              <NavLink to="/signup" class="nav-log">Create account</NavLink>
             </li>
           </React.Fragment>
         )}

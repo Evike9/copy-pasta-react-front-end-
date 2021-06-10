@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import withUser from "../../auth/withUser";
 import apiHandler from "../../api/apiHandler";
-// import "../../styles/form.css";
+import "../../styles/FormSignin.css";
 class FormSignin extends Component {
     state = {
         email: "",
