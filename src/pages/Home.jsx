@@ -13,6 +13,8 @@ class Home extends Component {
             this.setState({ snippets: data });
         });
     }
+
+
     render() {
         return (
             <div>

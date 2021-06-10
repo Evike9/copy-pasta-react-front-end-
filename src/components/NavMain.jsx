@@ -13,7 +13,7 @@ const NavMain = (props) => {
   return (
     <nav className="NavMain">
       <NavLink exact to="/">
-      <img src="./logo.png" className="logo" alt="logo"/>
+      <img src="/logo.png" className="logo" alt="logo"/>
 
       </NavLink>
       <ul>

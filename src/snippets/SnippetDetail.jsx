@@ -1,25 +1,50 @@
-import React from 'react'
+import React, { Component } from 'react'
+import apiHandler from "../api/apiHandler"
 
-const SnippetDetail = (props) => {
-    const { picture, title, userName, category, description, snippet, credits } =
-        props.snippet;
 
-    return (
-        <div className="SnippetDetail">
-            <div className="picture">
-                <img src={picture} alt={title} />
+export class SnippetDetail extends Component {
+
+
+    state = {
+        snippet: null
+    }
+
+    componentDidMount() {
+        const id = this.props.match.params.id;
+
+
+
+        apiHandler.getSnippet(id).then(data => {
+            this.setState({
+                snippet: data
+            })
+        }).catch(error => {
+            console.log(error)
+        })
+
+    }
+
+    render() {
+
+
+        if (!this.state.snippet) return null;
+        return (
+            <div>
+                <br />
+                Title: {this.state.snippet.title}
+                <br />
+                User: {this.state.snippet.userName}
+                <br />
+                Description: {this.state.snippet.description}
+                <br />
+                Category: {this.state.snippet.category}
+                <br />
+                Snippet: {this.state.snippet.snippet}
+                <br />
+                Credits: {this.state.snippet.credits}
             </div>
-            <div className="description">
-                <h2>Title: {title}</h2>
-                <h4>User: {userName}</h4>
-                <h5>Category: {category}</h5>
-                <p>Description: {description}</p>
-                <p>Snippet: {snippet}</p>
-                <p>Credits: {credits}</p>
-            </div>
-        </div>
-    );
-};
-
+        )
+    }
+}
 
 export default SnippetDetail

@@ -176,13 +176,13 @@ class UpdateSnippet extends Component {
                         <label className="label" htmlFor="snippet">
                             Snippet
             </label>
-                        <input
+                        <textarea
                             className="input"
-                            type="text"
+                            placeholder="Write the code for your snippet!"
                             name="snippet"
                             onChange={this.handleChange}
                             value={this.state.snippet || ""}
-                        />
+                            ></textarea>
                     </div>
                     <div className="form-group">
                         <label className="label" htmlFor="picture">

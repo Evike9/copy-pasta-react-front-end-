@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-// import AutoComplete from "../AutoComplete";
-// import Button from "../Button";
-// import Message from "../Message";
 import withUser from "../auth/withUser";
 import apiHandler from "../api/apiHandler";
 import { buildFormData } from "../utils/buildFormData";
-// import FeedBack from "../FeedBack";
-// import "../../styles/ItemForm.css";
+
 
 const initialState = {
     title: "",
@@ -17,7 +13,6 @@ const initialState = {
     snippet: "",
     credits: "",
     snippetAdded: false,
-    httpResponse: null,
     error: null,
 };
 
@@ -37,7 +32,7 @@ class SnippetForm extends Component {
         event.preventDefault();
 
         const fd = new FormData();
-        const { httpResponse, ...data } = this.state;
+        const { ...data } = this.state;
         buildFormData(fd, data);
 
         fd.append("picture", this.pictureRef.current.files[0]); 
@@ -61,7 +56,7 @@ if (this.state.snippetAdded) {
         return (
             <div className="SnippetForm-container">
                 <form className="SnippetForm" onSubmit={this.handleSubmit}>
-                    <h2>Add Item</h2>
+                    <h2>Add Snippet</h2>
                     <div className="form-group">
                         <label className="label" htmlFor="title">
                             Title
@@ -125,14 +120,13 @@ if (this.state.snippetAdded) {
                         <label className="label" htmlFor="snippet">
                             Snippet
             </label>
-                        <input
+                        <textarea
                             className="input"
-                            type="text"
                             onChange={this.handleChange}
                             value={this.state.snippet}
-                            placeholder="Snippet"
+                            placeholder="Describe your snippet!"
                             name="snippet"
-                        />
+                            ></textarea>
                     </div>
                     <div className="form-group">
                         <label className="label" htmlFor="picture">

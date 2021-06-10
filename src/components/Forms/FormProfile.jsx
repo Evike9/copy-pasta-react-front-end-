@@ -25,7 +25,6 @@ class FormProfile extends Component {
 
     const id = this.props.match.params.id;
     apiHandler.getUserInfos(id).then(data => {
-      console.log(data)
       this.setState({
         userName: data.userName,
         email: data.email,
