@@ -4,7 +4,7 @@ import withUser from "../auth/withUser";
 import "../styles/NavMain.css";
 
 const NavMain = (props) => {
-  const { context, toggleFormDisplay } = props;
+  const { context } = props;
 
   const handleLogout = () => {
     context.removeUser();
@@ -29,7 +29,8 @@ const NavMain = (props) => {
               </NavLink>
             </li>
             <li>
-              <p onClick={handleLogout}>Logout</p>
+              <NavLink exact to = "/"
+              onClick={handleLogout}>Logout</NavLink>
             </li>
           </React.Fragment>
         )}
