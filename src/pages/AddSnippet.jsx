@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import withUser from "../auth/withUser";
 import apiHandler from "../api/apiHandler";
 import { buildFormData } from "../utils/buildFormData";
+import "../../src/styles/AddSnippet.css";
 
 
 const initialState = {
@@ -155,7 +156,7 @@ if (this.state.snippetAdded) {
                         />
                     </div>
 
-                    <button primary>Add Snippet</button>
+                    <button primary className="btn-add-Snippet">Add Snippet</button>
                 </form>
             </div>
         );

@@ -72,8 +72,8 @@ class FormSignin extends Component {
                     <button className="btn-submit">Let's go!</button>
                 </form>
                 <div className="form-section link">
-                    <p>Don't yet have an account? </p>
-                    <Link to="/signup">Register</Link>
+                    <p>Don't you have an account yet? </p>
+                    <Link to="/signup" className="btn-register">Register</Link>
                 </div>
             </section>
         );

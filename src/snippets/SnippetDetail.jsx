@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import apiHandler from "../api/apiHandler"
+// import "../../src/styles/SnippetDetail.css";
 
 
 export class SnippetDetail extends Component {

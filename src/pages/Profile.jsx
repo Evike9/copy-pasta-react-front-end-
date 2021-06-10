@@ -5,7 +5,7 @@ import apiHandler from "../api/apiHandler";
 import SnippetCard from "../snippets/SnippetCard";
 import UpdateSnippet from "../snippets/UpdateSnippet";
 import AddSnippet from "./AddSnippet";
-//import "../styles/Profile.css";
+import "../../src/styles/Profile.css";
 //import "../styles/form.css";
 
 class Profile extends Component {

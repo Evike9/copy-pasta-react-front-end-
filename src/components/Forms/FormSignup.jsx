@@ -5,7 +5,6 @@ import apiHandler from "../../api/apiHandler";
 
 
 
-
 class FormSignup extends Component {
     state = {};
     handleChange = (event) => {
@@ -96,7 +95,7 @@ class FormSignup extends Component {
                 </form>
                 <div className="form-section link">
                     <p>Already have an account? </p>
-                    <Link to="/signin">Log in</Link>
+                    <Link to="/signin" className="btn-login">Log in</Link>
                 </div>
             </section>
         );

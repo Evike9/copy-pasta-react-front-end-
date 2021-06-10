@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import "../../src/styles/SnippetDisplay.css";
 
 const SnippetDisplay = (props) => {
     const { picture, title, userName, category, _id } =

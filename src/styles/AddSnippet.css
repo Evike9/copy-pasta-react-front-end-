@@ -1,13 +1,5 @@
-body {
-    background-color: #bbf7f4e4;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
 
-h1, h2, p {
-    color: rgba(17, 116, 135, 0.942)
-}
-
-.form{
+.SnippetForm{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,16 +23,13 @@ h1, h2, p {
     display: flex;
 }
 
-.form-section link {
-    padding: 1em;
-    border: 0.2px solid #EEFCF8;
-    border-radius: 0.5em;
-    background-color: rgba(152, 225, 240, 0.942);
-    font-weight: bold;
-    text-decoration: none;
-}
-.btn-submit, .btn-register, .btn-login {
+.btn-add-Snippet {
     color:rgba(17, 116, 135, 0.942);
     font-weight: bold;
     text-decoration: none;
 }
+
+/* .user-picture{
+    height: 100px;
+    width: 100px;     
+} */

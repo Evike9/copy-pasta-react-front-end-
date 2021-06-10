@@ -20,7 +20,7 @@ const NavMain = (props) => {
         {context.isLoggedIn && (
           <React.Fragment>
             <li>
-              <NavLink to="/add-snippet">
+              <NavLink to="/add-snippet" className="nav-log">
                 Add Snippet
               </NavLink>
             </li>
@@ -30,7 +30,7 @@ const NavMain = (props) => {
               </NavLink>
             </li>
             <li>
-              <NavLink exact to = "/"
+              <NavLink exact to = "/" className="nav-log"
               onClick={handleLogout}>Logout</NavLink>
             </li>
           </React.Fragment>
@@ -38,10 +38,10 @@ const NavMain = (props) => {
         {!context.isLoggedIn && (
           <React.Fragment>
             <li>
-              <NavLink to="/signin"class="nav-log">Log in</NavLink>
+              <NavLink to="/signin"className="nav-log">Log in</NavLink>
             </li>
             <li>
-              <NavLink to="/signup" class="nav-log">Create account</NavLink>
+              <NavLink to="/signup" className="nav-log">Create account</NavLink>
             </li>
           </React.Fragment>
         )}

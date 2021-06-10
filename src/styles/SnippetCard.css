@@ -1,0 +1,26 @@
+h2, h4, h5, p {
+    color: rgba(17, 116, 135, 0.942)
+}
+
+.SnippetCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.description {
+    padding: 0.5em;
+    width: 100%;
+    color:rgba(17, 116, 135, 0.942);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.description button .description link{
+    color:rgba(17, 116, 135, 0.942);
+    font-weight: bold;
+    text-decoration: none;
+}
+
