@@ -69,13 +69,11 @@ class Profile extends Component {
                 {selectedSnippet && (
                     <UpdateSnippet
                         snippet={selectedSnippet}
-                        handleClose={this.onEditFormClose}
-                        onSnippetUpdate={this.handleSnippetUpdate}
+                      /*  onSnippetUpdate={this.handleSnippetUpdate} */
                     />
                 )}
                 {user && this.props.displayForm && (
                     <AddSnippet
-                        handleClose={this.props.handleFormClose}
                         addSnippet={this.addSnippet}
                     />
                 )}

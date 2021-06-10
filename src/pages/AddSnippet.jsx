@@ -61,9 +61,6 @@ if (this.state.snippetAdded) {
         return (
             <div className="SnippetForm-container">
                 <form className="SnippetForm" onSubmit={this.handleSubmit}>
-                    <p onClick={this.props.handleClose} className="close-link">
-                        X
-          </p>
                     <h2>Add Item</h2>
                     <div className="form-group">
                         <label className="label" htmlFor="title">

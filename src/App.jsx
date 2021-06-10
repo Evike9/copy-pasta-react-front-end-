@@ -8,18 +8,12 @@ import Profile from './pages/Profile';
 import ProtectedRoute from './utils/ProtectedRoute';
 import AddSnippet from './pages/AddSnippet'
 import UpdateSnippet from './snippets/UpdateSnippet';
+import SnippetDetail from './snippets/SnippetDetail';
+import DisplayCard from './pages/DisplayCard';
 
 class App extends React.Component {
   state = {
     displayForm: false,
-  };
-
-  toggleFormDisplay = () => {
-    //  this.setState({ displayForm: !this.state.displayForm });
-  };
-
-  handleClose = () => {
-    this.setState({ displayForm: false });
   };
 
   render() {
@@ -35,7 +29,6 @@ class App extends React.Component {
               <Home
                 {...historyProps}
                 displayForm={this.state.displayForm}
-                handleFormClose={this.handleClose}
               />
             )}
           />
@@ -47,7 +40,6 @@ class App extends React.Component {
               <Profile
                 {...historyProps}
                 displayForm={this.state.displayForm}
-                handleFormClose={this.handleClose}
               />
             )}
           />
@@ -58,7 +50,6 @@ class App extends React.Component {
               <AddSnippet
                 {...historyProps}
                 displayForm={this.state.displayForm}
-                handleFormClose={this.handleClose}
               />
             )}
           />
@@ -67,6 +58,7 @@ class App extends React.Component {
           <ProtectedRoute exact path="/update-snippet/:id" component={UpdateSnippet} />
 
           <Route exact path="/" component={Home} />
+          <Route exact path="/snippet/:id" component={DisplayCard} />
           <Route exact path="/signup" component={FormSignup} />
           <Route exact path="/signin" component={FormSignin} />
         </Switch>

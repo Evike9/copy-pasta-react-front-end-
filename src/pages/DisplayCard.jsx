@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import SnippetDisplay from '../snippets/SnippetDisplay'
+import SnippetDetail from '../snippets/SnippetDetail'
 import apiHandler from "../api/apiHandler";
 //import SnippetDetail from '../snippets/SnippetDetail'
 
-class Home extends Component {
+class DisplayCard extends Component {
     state = {
         snippet: null,
         snippets: [],
@@ -19,7 +19,7 @@ class Home extends Component {
                 {
                     this.state.snippets.map((snippet) => {
                         return (<div>
-                            <SnippetDisplay
+                            <SnippetDetail
                                 snippet={snippet} />
                         </div>
                         )
@@ -28,4 +28,4 @@ class Home extends Component {
         )
     }
 }
-export default Home
+export default DisplayCard
